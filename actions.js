@@ -1,35 +1,38 @@
 import { createStore } from 'redux';
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
 import uuid from uuid;
 
 const ADD_COMMENT = 'ADD_COMMENT';
+const REMOVE_COMMENT = 'REMOVE_COMMENT';
+const EDIT_COMMENT = 'EDIT_COMMENT';
+const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
+const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
+
 {
-    type: ADD_COMMENT
+    type: ADD_COMMENT,
     text: 'My first comment !'
 }
 
-const REMOVE_COMMENT = 'REMOVE_COMMENT';
 {
-    type: REMOVE_COMMENT
+    type: REMOVE_COMMENT,
     id: 20 // przykładowy id komentarza do usunięcia
 }
 
-const EDIT_COMMENT = 'EDIT_COMMENT';
 {
-    type: EDIT_COMMENT
-    id: 20
+    type: EDIT_COMMENT,
+    id: 20,
     text: 'wyedytowany tekst komentarza'
 }
-const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
+
 {
     type: THUMB_UP_COMMENT,
-    id
+    id: 20
 
 }
-const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
+
 {
     type: THUMB_DOWN_COMMENT,
-    id
+    id: 20
 }
 
 function addComment(text) {
@@ -48,21 +51,22 @@ function removeComment(id) {
     }
 }
 
-function editComment() {
+function editComment(id, text) {
     return {
         type: ADD_COMMENT,
-        id
+        id,
+        text
 
     }
 }
 
-function thumbUpComment() {
+function thumbUpComment(id) {
     return {
         type: THUMB_UP_COMMENT,
         id
     }
 }
-function thumbDownComment() {
+function thumbDownComment(id) {
     return {
         type: THUMB_DOWN_COMMENT,
         id
@@ -75,13 +79,13 @@ function thumbDownComment() {
 
 const boundAddComment = text => dispatch(addComment(text));
 const boundRemoveComment = id => dispatch(removeComment(id));
-const boundEditComment = text => dispatch(editComment (text));
+const boundEditComment = (id, text) => dispatch(editComment (id, text));
 const boundThumbUpComment = id => dispatch(thumbUpComment (id));
 const boundThumbDownComment = id => dispatch(thumbDownComment(id));
 
 boundAddComment('nowy komentarz!');
 boundAddComment('kolejny nowy komentarz!');
 boundRemoveComment(id);
-boundEditComment(text);
+boundEditComment(id, ext);
 boundThumbUpComment(id);
 boundThumbDownComment(id);
